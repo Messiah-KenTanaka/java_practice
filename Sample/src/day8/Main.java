@@ -1,32 +1,25 @@
 package day8;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		FileReader fr = null;
+		PrintWriter pw =  null;
 		try {
-			fr = new FileReader("text1.txt");
-			int c;
-			while((c = fr.read()) != -1) {
-				System.out.print((char)c);
-			}
-		} catch (FileNotFoundException e) {
-			System.out.println("ファイルが見つかりません");
-		} catch (IOException e2) {
-			System.out.println("ファイルエラーです");
-		} finally {
-			try {
-				if(fr != null) {
-					fr.close();
-				}
-			} catch (IOException e) {
-				System.out.println("ファイルクローズに失敗しました。");
-			}
+			pw = new PrintWriter(new BufferedWriter(new FileWriter("text4.txt")));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		pw.print("printによる出力(改行なし)");
+		pw.println("printlnによる出力（改行あり）");
+		pw.printf("printfによる出力 %s", 5);
+		System.out.println("data iyi");
+		
+		pw.close();
 	}
 }
